@@ -1,33 +1,20 @@
-// src/components/MovieList.jsx
 import React from 'react';
-import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
+import movies from './movies';
+import { Container, Row, Col } from 'react-bootstrap';
 
-const MovieList = ({ movies }) => {
+const MovieList = () => {
   return (
-    <div className="movie-list">
-      {movies.map((movie, index) => (
-        <MovieCard
-          key={index}
-          title={movie.title}
-          description={movie.description}
-          posterURL={movie.posterURL}
-          rating={movie.rating}
-        />
-      ))}
-    </div>
+    <Container>
+      <Row>
+        {movies.map(movie => (
+          <Col key={movie.id} sm={12} md={6} lg={4}>
+            <MovieCard {...movie} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
-};
-
-MovieList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      posterURL: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-    })
-  ).isRequired,
 };
 
 export default MovieList;

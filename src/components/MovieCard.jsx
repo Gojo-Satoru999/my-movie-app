@@ -1,23 +1,20 @@
-// src/components/MovieCard.jsx
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const MovieCard = ({ title, description, posterURL, rating }) => {
+const MovieCard = ({ id, title, description, posterURL, rating }) => {
   return (
-    <div className="movie-card">
-      <img src={posterURL} alt={title} />
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>Rating: {rating}</p>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={posterURL} />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{description}</Card.Text>
+        <Link to={`/movies/${id}`}>
+          <Button variant="primary">View Details</Button>
+        </Link>
+      </Card.Body>
+    </Card>
   );
-};
-
-MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  posterURL: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
 };
 
 export default MovieCard;
